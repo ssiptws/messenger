@@ -49,10 +49,10 @@ button:hover {
     opacity: 0.8;
 }
 
-.cancelbtn {
+.regisbtn {
     width: auto;
     padding: 10px 18px;
-    background-color: #f03434;
+    background-color: #049372;
 }
 
 .container {
