@@ -74,10 +74,11 @@
 <head>
 	<title>Register</title>
 	<link rel="stylesheet" href="stylelogin.css" type="text/css">
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="regismenu.css" type="text/css">
 </head>
-<body style="background: url(bg2.png) no-repeat top center / cover;">
-        <div class="containerlogin">
+<body >
+        <div class="container">
+        	
       <div class="navbar">
         <div class="menu">
           <h3 class="logo"><span style="color: red">IMPOSTOR</span> Mess<span>enger</span></h3>
@@ -93,6 +94,7 @@
             <div class="overlay">
               <div class="inner">
                 <h2>Signup</h2> 
+
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 		
         <div class="containerlogin">
