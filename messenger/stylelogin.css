@@ -68,14 +68,14 @@ button:hover {
 	color: #f1f1f1;
 }
 
-.container {
+.containerlogin {
     padding: 16px;
     background-color: #25333D;
   
     
 	box-shadow: 3px 2px 5px #19B188;
 }
-.container b{
+.containerlogin b{
 	color: #f1f1f1;
 }
 
