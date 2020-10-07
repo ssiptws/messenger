@@ -67,7 +67,7 @@
 	<title>Register</title>
 	<link rel="stylesheet" href="stylelogin.css" type="text/css">
 </head>
-<body style="background-color: #2980b9">
+<body style="background: url(bg2.png) no-repeat top center / cover;">
     <div style= "margin: 10%">
         <h2>Signup</h2> 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -89,8 +89,8 @@
 			</div>
             <button type="submit">Register</button>
         </div>
-        <div class="container" style="background-color: #13232f; margin-top: 10px">
-			<p> Sudah punya akun? <a href="login.php"> Login disini</a>.</p>
+        <div class="container" style="background-color: #25333D; margin-top: 10px;">
+			<p style="color : WHITE"> Sudah punya akun? <a href="login.php" style="color: white"> Login disini</a>.</p>
 			<!-- <a href="register.php" class="regisbtn regislink">Registration</a>
             <a href="forgot.php" class="forgot">Lupa Password?</a> -->
         </div>

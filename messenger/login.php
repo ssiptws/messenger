@@ -3,7 +3,7 @@
 	<title>Login</title>
 	<link rel="stylesheet" href="stylelogin.css" type="text/css">
 </head>
-<body style="background-color: #2980b9">
+<body style="background: url(bg2.png) no-repeat top center / cover;">
     <div style= "margin: 10%">
         <h2>Login</h2> 
         <form action="" method="post">
@@ -15,7 +15,7 @@
             <button type="submit">Masuk</button>
             <input type="checkbox" checked="checked"><span> Ingat Saya</span>
         </div>
-        <div class="container" style="background-color: #13232f; margin-top: 10px">
+        <div class="container" style="background-color: #25333D; margin-top: 10px">
 			<a href="register.php" class="regisbtn regislink">Registration</a>
             <a href="forgot.php" class="forgot">Lupa Password?</a>
         </div>
