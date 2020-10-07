@@ -77,7 +77,7 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body style="background: url(bg2.png) no-repeat top center / cover;">
-        <div class="container">
+        <div class="containerlogin">
       <div class="navbar">
         <div class="menu">
           <h3 class="logo"><span style="color: red">IMPOSTOR</span> Mess<span>enger</span></h3>

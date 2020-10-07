@@ -7,6 +7,7 @@
 	require_once "connect.php";
 	$username = $password = "";
 	$username_err = $password_err = "";
+	
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		if(empty(trim($_POST["username"]))){
 			$username_err = "Please enter username";
@@ -24,7 +25,7 @@
 		
 		if(empty($username_err) && empty($password_err)){
 			$sql = "SELECT id, username, password FROM users WHERE username = ?";
-			if($stmt = mysqli_prepare($connect, $sql){
+			if($stmt = mysqli_prepare($connect, $sql)){
 				mysqli_stmt_bind_param($stmt, "s", $param_username);
 				$param_username = $username;
 				
@@ -33,8 +34,8 @@
 					
 					if(mysqli_stmt_num_rows($stmt) == 1){
 						mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
-						if(mysqli_stmt_fetch($stmt){
-							if(password_verify($password, $hashed_password){
+						if(mysqli_stmt_fetch($stmt)){
+							if(password_verify($password, $hashed_password)){
 								session_start();
 								$_SESSION["loggedin"] = true;
 								$_SESSION["id"] = $id;
@@ -53,9 +54,10 @@
 				else{
 					echo "something went wrong.";
 				}
+				mysqli_stmt_close($stmt);
 			}
 		}
-		mysqli_stmt_close($stmt);
+		mysqli_close($connect);
 	}
 ?>
 <!-- 
@@ -71,10 +73,18 @@
         <h2>Login</h2> 
         <form action="" method="post">
         <div class="containerlogin">
-            <label><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
-            <label><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required> 
+			<div class="formgroup <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+				<label><b>Username</b></label>
+				<input type="text" placeholder="Enter Username" name="username" required>
+				<span class="help-block"><?php echo $username_err; ?></span>
+			</div>
+			
+            <div class="formgroup <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+				<label><b>Password</b></label>
+				<input type="password" placeholder="Enter Password" name="password" required>
+				<span class="help-block"><?php echo $password_err; ?></span>
+			</div>
+			
             <button type="submit">Masuk</button>
             <input type="checkbox" checked="checked"><span> Ingat Saya</span>
         </div>

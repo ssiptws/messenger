@@ -89,6 +89,12 @@ span.psw a{
 span{
 	color:white;
 }
+.help-block{
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: red;
+}
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
     span.psw {
