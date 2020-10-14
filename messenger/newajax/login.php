@@ -22,15 +22,15 @@
 <html>
 <head>
 	<title>Login</title>
-	<link rel="stylesheet" href="stylelogin.css" type="text/css">
+	<link rel="stylesheet" href="css/stylelogin.css" type="text/css">
 </head>
-<body style="background: url(bg2.png) no-repeat top center / cover;">
+<body style="background: url(assets/bg2.png) no-repeat top center / cover;">
     <div style= "margin: 10%">
         <h2>Login</h2> 
         <form method="post">
         <div class="containerlogin">
             <div class="formgroup">
-                <?php if ($loginError ) { ?>
+                <?php if ($loginError) { ?>
 					<div class="alert alert-warning"><?php echo $loginError; ?></div>
 				<?php } ?>
             </div>

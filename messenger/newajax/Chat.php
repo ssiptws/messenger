@@ -6,7 +6,7 @@ class Chat{
     private $host  = 'localhost';
     private $user  = 'root';
     private $password   = "";
-    private $database  = "cet_demo";      
+    private $database  = "chat_project";      
     private $chatTable = 'chat';
 	private $chatUsersTable = 'chat_users';
 	private $chatLoginDetailsTable = 'chat_login_details';
@@ -49,8 +49,9 @@ class Chat{
         return  $this->getData($sqlQuery);
 	}		
 	public function registerUsers($username, $password){
+		$passwordencrypt = sha1($password);
 		$sqlQuery = "
-					INSERT INTO ".$this->chatUsersTable." (username, password) VALUES ('".$username."', '".$password."')";
+					INSERT INTO ".$this->chatUsersTable." (username, password) VALUES ('".$username."', '".$passwordencrypt."')";
 		return $this->registerData($sqlQuery);
 	}
 	public function registerData($sqlQuery){

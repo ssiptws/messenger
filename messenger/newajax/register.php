@@ -6,7 +6,7 @@
 		include ('Chat.php');
 		$chat = new Chat();
 		$register = $chat->registerUsers($_POST['username'], $_POST['password']);	
-		if(!empty($register)) {
+		if(empty($register)) {
 			header("Location: login.php");
 		} else {
 			$registerError = "Invalid username or password!";
