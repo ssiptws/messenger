@@ -4,14 +4,35 @@
 	$registerError = '';
 	if (!empty($_POST['username']) && !empty($_POST['password'])) {
 		include ('Chat.php');
-		$chat = new Chat();
-		$register = $chat->registerUsers($_POST['username'], $_POST['password']);	
-		if(empty($register)) {
-			header("Location: login.php");
-		} else {
-			$registerError = "Invalid username or password!";
+		$sql = "SELECT id FROM chat_users WHERE username = ?";
+		$connect = mysqli_connect("localhost", "root", "", "ssip");
+			if($stmt = mysqli_prepare($connect, $sql)){
+				mysqli_stmt_bind_param($stmt, "s", $param_username);
+				$param_username = trim($_POST["username"]);
+				
+				if(mysqli_stmt_execute($stmt)){
+					mysqli_stmt_store_result($stmt);
+					
+					if(mysqli_stmt_num_rows($stmt) == 1){
+						$registerError = "This username already exist.";
+					}
+					else{
+						$chat = new Chat();
+						$register = $chat->registerUsers($_POST['username'], $_POST['password']);	
+						if(empty($register)) {
+						header("Location: login.php");
+						} 
+						else {
+						$registerError = "Invalid username or password!";
+						}
+					}
+				}
+				else{
+					echo "Something went wrong. Please try again later.";
+				}
+				mysqli_stmt_close($stmt);
+			}
 	}
-}
 ?>
 <html>
 <head>
