@@ -51,7 +51,7 @@ class Chat{
 	public function registerUsers($username, $password){
 		$sqlQuery = "
 					INSERT INTO ".$this->chatUsersTable." (username, password) VALUES ('".$username."', '".$password."')";
-		return $this->getData($sqlQuery);
+		return $this->registerData($sqlQuery);
 	}
 	public function registerData($sqlQuery){
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
