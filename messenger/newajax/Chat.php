@@ -45,8 +45,14 @@ class Chat{
 			SELECT userid, username 
 			FROM ".$this->chatUsersTable." 
 			WHERE username='".$username."' AND password='".$password."'";		
-        return  $this->getData($sqlQuery);
+        return  $this->registerData($sqlQuery);
 	}		
+	public function registerData($sqlQuery){
+		$result = mysqli_query($this->dbConnect, $sqlQuery);
+		if(!$result){
+			die('Error in query: '. mysqli_error(dbConnect));
+		}
+	}
 	public function registerUsers($username, $password){
 		$sqlQuery = "
 					INSERT INTO ".$this->chatUsersTable." (username, password) VALUES ('".$username."', '".$password."')";
