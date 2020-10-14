@@ -41,22 +41,23 @@ class Chat{
 		return $numRows;
 	}
 	public function loginUsers($username, $password){
+		$passwordencrypt = sha1($password);
 		$sqlQuery = "
 			SELECT userid, username 
 			FROM ".$this->chatUsersTable." 
-			WHERE username='".$username."' AND password='".$password."'";		
-        return  $this->registerData($sqlQuery);
+			WHERE username='".$username."' AND password='".$passwordencrypt."'";
+        return  $this->getData($sqlQuery);
 	}		
+	public function registerUsers($username, $password){
+		$sqlQuery = "
+					INSERT INTO ".$this->chatUsersTable." (username, password) VALUES ('".$username."', '".$password."')";
+		return $this->getData($sqlQuery);
+	}
 	public function registerData($sqlQuery){
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
 		if(!$result){
 			die('Error in query: '. mysqli_error(dbConnect));
 		}
-	}
-	public function registerUsers($username, $password){
-		$sqlQuery = "
-					INSERT INTO ".$this->chatUsersTable." (username, password) VALUES ('".$username."', '".$password."')";
-		return $this->getData($sqlQuery);
 	}
 	public function chatUsers($userid){
 		$sqlQuery = "
