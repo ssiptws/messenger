@@ -93,7 +93,7 @@ if(isset($_POST["register"])){
 				<label><b>Confirm Password</b></label>
 				<input type="password" placeholder="Enter Password" name="confirm_password" required> 
 			
-            <button type="submit">Register</button>
+            <button type="submit" name="register">Register</button>
 			<span class="help-block"><?php echo $message; ?></span>
         </div>
 		
