@@ -1,68 +1,49 @@
 <?php
-    session_start();
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        header("location: index.php");
-        exit;
-    }
-    require_once "connect.php";
-    $username = $password = "";
-    $username_err = $password_err = "";
-    
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        if(empty(trim($_POST["username"]))){
-            $username_err = "Please enter username";
-        }
-        else{
-            $username = trim($_POST["username"]);
-        }
-        
-        if(empty(trim($_POST["password"]))){
-            $password_err = "Please enter password";
-        }
-        else{
-            $password = trim($_POST["password"]);
-        }
-        
-        if(empty($username_err) && empty($password_err)){
-            $sql = "SELECT id, username, password FROM users WHERE username = ?";
-            if($stmt = mysqli_prepare($connect, $sql)){
-                mysqli_stmt_bind_param($stmt, "s", $param_username);
-                $param_username = $username;
-                
-                if(mysqli_stmt_execute($stmt)){
-                    mysqli_stmt_store_result($stmt);
-                    
-                    if(mysqli_stmt_num_rows($stmt) == 1){
-                        mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
-                        if(mysqli_stmt_fetch($stmt)){
-                            if(password_verify($password, $hashed_password)){
-                                session_start();
-                                $_SESSION["loggedin"] = true;
-                                $_SESSION["id"] = $id;
-                                $_SESSION["username"] = $username;
-                                header("location: index.php");
-                            }
-                            else{
-                                $password_err = "Wrong password";
-                            }
-                        }
-                    }
-                    else{
-                        $username_err = "No account";
-                    }
-                }
-                else{
-                    echo "something went wrong.";
-                }
-                mysqli_stmt_close($stmt);
-            }
-        }
-        mysqli_close($connect);
-    }
+include('database_connection.php');
+session_start();
+$message = '';
+if(isset($_SESSION['user_id'])){
+	header('location:index.php');
+}
+
+if(isset($_POST['login'])){
+	$query = "
+		SELECT * FROM login 
+  		WHERE username = :username
+	";
+	$statement = $connect->prepare($query);
+	$statement->execute(
+		array(
+			':username' => $_POST["username"]
+		)
+	);	
+	$count = $statement->rowCount();
+	if($count > 0){
+		$result = $statement->fetchAll();
+		foreach($result as $row){
+			if(password_verify($_POST["password"], $row["password"])){
+				$_SESSION['user_id'] = $row['user_id'];
+				$_SESSION['username'] = $row['username'];
+				$sub_query = "
+				INSERT INTO login_details 
+	     		(user_id) 
+	     		VALUES ('".$row['user_id']."')
+				";
+				$statement = $connect->prepare($sub_query);
+				$statement->execute();
+				$_SESSION['login_details_id'] = $connect->lastInsertId();
+				header('location:index.php');
+			}
+			else{
+				$message = '<label>Wrong Password</label>';
+			}
+		}
+	}
+	else{
+		$message = '<label>Wrong Username</labe>';
+	}
+}
 ?>
-<!-- 
-    TODO: TWEAK LOGIN PAGE
-!-->
 
 <html>
 <head>
@@ -72,22 +53,18 @@
 <body style="background: url(bg2.png) no-repeat top center / cover;">
     <div style= "margin: 10%">
         <h2>Login</h2> 
-        <form action="" method="post">
+        <form method="post">
         <div class="containerlogin">
-            <div class="formgroup <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+            <div class="formgroup ">
                 <label><b>Username</b></label>
                 <input type="text" placeholder="Enter Username" name="username" required>
-                <span class="help-block"><?php echo $username_err; ?></span>
             </div>
             
-            <div class="formgroup <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+            <div class="formgroup ">
                 <label><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required>
-                <span class="help-block"><?php echo $password_err; ?></span>
             </div>
-            
-            
-            <button type="submit">Masuk</button>
+            <button type="submit" name="login">Masuk</button>
             <input type="checkbox" checked="checked"><span> Ingat Saya</span>
         </div>
         <div class="containerlogin" style="background-color: #25333D; margin-top: 10px">
