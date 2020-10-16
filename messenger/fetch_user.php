@@ -10,11 +10,11 @@ $statement = $connect->prepare($query);
 $statement->execute();
 $result = $statement->fetchAll();
 $output = '
-<table class="table table-bordered table-striped">
+<table width="100%">
 	<tr>
-		<th width="70%">CREWMATE USERNAME</td>
-		<th width="20%">STATUS</td>
-		<th width="10%">ACTION</td>
+		<th width="70%" style="background-color:white; padding:10px">CREWMATE USERNAME</td>
+		<th width="20%" style="background-color:white">STATUS</td>
+		<th width="10%" style="background-color:white">ACTION</td>
 	</tr>
 ';
 
@@ -31,8 +31,8 @@ foreach($result as $row)
 		$status = '<span class="label label-danger">Offline</span>';
 	}
 	$output .= '
-	<tr style= " background-color:white">
-		<td class:"universal"  style="padding:15px ; font-family: "Poppins", sans-serif;" >'.$row['username'].' '.count_unseen_message($row['user_id'], $_SESSION['user_id'], $connect).' '.fetch_is_type_status($row['user_id'], $connect).'</td>
+	<tr>
+		<td class:"universal"  style="font-size:18px; padding:15px ; color:white; font-family: "Poppins", sans-serif;" >'.$row['username'].' '.count_unseen_message($row['user_id'], $_SESSION['user_id'], $connect).' '.fetch_is_type_status($row['user_id'], $connect).'</td>
 		<td style="padding:20px" >'.$status.'</td>
 		<td style="padding:15px ; font-family: "Poppins", sans-serif;"><button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$row['user_id'].'" data-tousername="'.$row['username'].'">Start Chat</button></td>
 	</tr>
