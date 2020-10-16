@@ -1,22 +1,14 @@
 <?php
-
-//fetch_user.php
-
 include('database_connection.php');
-
 session_start();
-
 $query = "
 SELECT * FROM login 
 WHERE user_id != '".$_SESSION['user_id']."' 
 ";
 
 $statement = $connect->prepare($query);
-
 $statement->execute();
-
 $result = $statement->fetchAll();
-
 $output = '
 <table class="table table-bordered table-striped">
 	<tr>
@@ -32,12 +24,10 @@ foreach($result as $row)
 	$current_timestamp = strtotime(date("Y-m-d H:i:s") . '- 10 second');
 	$current_timestamp = date('Y-m-d H:i:s', $current_timestamp);
 	$user_last_activity = fetch_user_last_activity($row['user_id'], $connect);
-	if($user_last_activity > $current_timestamp)
-	{
+	if($user_last_activity > $current_timestamp){
 		$status = '<span class="label label-success">Online</span>';
 	}
-	else
-	{
+	else{
 		$status = '<span class="label label-danger">Offline</span>';
 	}
 	$output .= '
@@ -54,4 +44,4 @@ $output .= '</table>';
 echo $output;
 
 ?>
-<link rel="stylesheet" href="msgstyle.css" />
+<link rel="stylesheet" href="msgstyle.css"/>

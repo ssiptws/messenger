@@ -1,18 +1,9 @@
-<!--
-//index.php
-!-->
-
 <?php
-
 include('database_connection.php');
-
 session_start();
-
-if(!isset($_SESSION['user_id']))
-{
+if(!isset($_SESSION['user_id'])){
 	header("location:login.php");
 }
-
 ?>
 
 <html>  
@@ -33,10 +24,9 @@ if(!isset($_SESSION['user_id']))
     <body class="universal" style="background: url(bgk.png)no-repeat top center / cover; min-height: 100vh; width: 100%; 
   position: relative;">  
         <div class="container">
-			<br />
-			
+			<br/>			
 			<h3 class = "logo" align="center"><span style="color: red">IMPOSTOR</span> Mess<span>enger</span> </h3><br/>
-			<br />
+			<br/>
 			<div class="row">
 				<div class="col-md-8 col-sm-6">
 					<h4>ONLINE CREWMATES</h4>
