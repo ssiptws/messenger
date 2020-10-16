@@ -41,8 +41,8 @@ foreach($result as $row)
 		$status = '<span class="label label-danger">Offline</span>';
 	}
 	$output .= '
-	<tr>
-		<td class:"universal"  style="padding:15px; color:white ; font-family: "Poppins", sans-serif;" >'.$row['username'].' '.count_unseen_message($row['user_id'], $_SESSION['user_id'], $connect).' '.fetch_is_type_status($row['user_id'], $connect).'</td>
+	<tr style= " background-color:white">
+		<td class:"universal"  style="padding:15px ; font-family: "Poppins", sans-serif;" >'.$row['username'].' '.count_unseen_message($row['user_id'], $_SESSION['user_id'], $connect).' '.fetch_is_type_status($row['user_id'], $connect).'</td>
 		<td style="padding:20px" >'.$status.'</td>
 		<td style="padding:15px ; font-family: "Poppins", sans-serif;"><button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$row['user_id'].'" data-tousername="'.$row['username'].'">Start Chat</button></td>
 	</tr>
