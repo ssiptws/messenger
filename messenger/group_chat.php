@@ -3,6 +3,7 @@ include('database_connection.php');
 session_start();
 if($_POST["action"] == "insert_data"){
 	$data = array(
+		':to_user_id'		=>	'0',
 		':from_user_id'		=>	$_SESSION["user_id"],
 		':chat_message'		=>	$_POST['chat_message'],
 		':status'			=>	'1'
@@ -10,8 +11,8 @@ if($_POST["action"] == "insert_data"){
 
 	$query = "
 	INSERT INTO chat_message 
-	(from_user_id, chat_message, status) 
-	VALUES (:from_user_id, :chat_message, :status)
+	(to_user_id, from_user_id, chat_message, status) 
+	VALUES (:to_user_id, :from_user_id, :chat_message, :status)
 	";
 
 	$statement = $connect->prepare($query);
