@@ -62,7 +62,7 @@ if(isset($_POST["register"])){
     <link rel="stylesheet" href="regismenu.css" type="text/css">
 </head>
 <body >
-        <div class="container">
+    <div class="container">
         	
       <div class="navbar">
         <div class="menu">
@@ -83,16 +83,12 @@ if(isset($_POST["register"])){
         <form method="post">
 		
         <div class="containerlogin">
-		
 				<label><b>Username</b></label>
 				<input type="text" placeholder="Enter Username" name="username" required>
-			
 				<label><b>Password</b></label>
 				<input type="password" placeholder="Enter Password" name="password" required> 
-			
 				<label><b>Confirm Password</b></label>
 				<input type="password" placeholder="Enter Password" name="confirm_password" required> 
-			
             <button type="submit" name="register">Register</button>
 			<span class="help-block"><?php echo $message; ?></span>
         </div>
@@ -102,7 +98,7 @@ if(isset($_POST["register"])){
         </div>
 		
         </form>
-              </div>
+            </div>
             </div>
           </header>
         </div>
