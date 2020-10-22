@@ -64,6 +64,7 @@ if(isset($_POST['login'])){
                 <label><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required>
             </div>
+			<span class="help-block"><?php echo $message; ?></span>
             <button type="submit" name="login">Masuk</button>
             <input type="checkbox" checked="checked"><span> Ingat Saya</span>
         </div>
