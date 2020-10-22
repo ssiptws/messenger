@@ -25,9 +25,9 @@ if(isset($_POST['login'])){
 				$_SESSION['user_id'] = $row['user_id'];
 				$_SESSION['username'] = $row['username'];
 				$sub_query = "
-				INSERT INTO login_details 
-	     		(user_id) 
-	     		VALUES ('".$row['user_id']."')
+					INSERT INTO login_details 
+	     			(user_id) 
+	     			VALUES ('".$row['user_id']."')
 				";
 				$statement = $connect->prepare($sub_query);
 				$statement->execute();
@@ -35,12 +35,12 @@ if(isset($_POST['login'])){
 				header('location:index.php');
 			}
 			else{
-				$message = '<label>Wrong Password</label>';
+				$message = 'Wrong Password';
 			}
 		}
 	}
 	else{
-		$message = '<label>Wrong Username</labe>';
+		$message = 'Wrong Username';
 	}
 }
 ?>
