@@ -9,9 +9,9 @@ $data = array(
 );
 
 $query = "
-	INSERT INTO chat_message 
-	(to_user_id, from_user_id, chat_message, status) 
-	VALUES (:to_user_id, :from_user_id, :chat_message, :status)
+INSERT INTO chat_message 
+(to_user_id, from_user_id, chat_message, status) 
+VALUES (:to_user_id, :from_user_id, :chat_message, :status)
 ";
 
 $statement = $connect->prepare($query);

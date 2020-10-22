@@ -2,8 +2,8 @@
 include('database_connection.php');
 session_start();
 $query = "
-	SELECT * FROM login 
-	WHERE user_id != '".$_SESSION['user_id']."' 
+SELECT * FROM login 
+WHERE user_id != '".$_SESSION['user_id']."' 
 ";
 
 $statement = $connect->prepare($query);
@@ -18,7 +18,8 @@ $output = '
 	</tr>
 ';
 
-foreach($result as $row){
+foreach($result as $row)
+{
 	$status = '';
 	$current_timestamp = strtotime(date("Y-m-d H:i:s") . '- 10 second');
 	$current_timestamp = date('Y-m-d H:i:s', $current_timestamp);
@@ -37,7 +38,10 @@ foreach($result as $row){
 	</tr>
 	';
 }
+
 $output .= '</table>';
+
 echo $output;
+
 ?>
 <link rel="stylesheet" href="msgstyle.css"/>
