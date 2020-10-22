@@ -114,13 +114,19 @@ if(isset($_POST["register"])){
       <div class="links">
         <ul>
           <li>
+            <a href="index.html" style="--i: 0.05s;">Home</a>
+          </li>
+          <li>
             <a href="login.php" style="--i: 0.1s;">Login</a>
           </li>
           <li>
-            <a href="#" style="--i: 0.2s;">Register</a>
+            <a href="messeging.php" style="--i: 0.15s;">Messege</a>
           </li>
           <li>
-            <a href="about.html" style="--i: 0.25s;">About Us</a>
+            <a href="#" style="--i: 0.2s;">Profile</a>
+          </li>
+          <li>
+            <a href="#" style="--i: 0.25s;">Setting</a>
           </li>
         </ul>
       </div>

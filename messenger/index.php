@@ -53,9 +53,6 @@ if(!isset($_SESSION['user_id'])){
 			<br />
 			
 		</div>
-        <div style="position: absolute; bottom: 8px; right: 16px;font-size: 18px;">
-            <a href="about.html" style="color=white; text-decoration=none">About Us</a>
-        </div>
 		
     </body>  
 </html>
